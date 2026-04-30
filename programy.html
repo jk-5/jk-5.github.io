@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programy Podstawowe | J.K Serwis PC</title>
+    <link rel="icon" type="image/x-icon" href="https://github.com/jk-5/jk-5.github.io/raw/refs/heads/main/favicon.ico">
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(rgba(15, 15, 20, 0.9), rgba(15, 15, 20, 0.9)), url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+        }
+
+        .container {
+            background: rgba(30, 30, 35, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 { color: #ffffff; font-size: 1.5rem; margin-bottom: 20px; border-bottom: 2px solid #0078d4; padding-bottom: 10px; }
+
+        .download-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-download {
+            background: #0078d4;
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .btn-download:hover { background: #005a9e; }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 30px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover { color: #fff; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Programy Podstawowe</h1>
+        
+        <div class="download-list">
+            <!-- Przykładowe elementy - możesz zmieniać nazwy i linki -->
+            <div class="item">
+                <span>Przeglądarka Chrome</span>
+                <a href="https://www.google.com/chrome/" target="_blank" class="btn-download">Pobierz</a>
+            </div>
+            <div class="item">
+                <span>VLC Media Player</span>
+                <a href="https://www.videolan.org/" target="_blank" class="btn-download">Pobierz</a>
+            </div>
+            <div class="item">
+                <span>7-Zip Archiver</span>
+                <a href="https://www.7-zip.org/" target="_blank" class="btn-download">Pobierz</a>
+            </div>
+        </div>
+
+        <a href="index.html" class="btn-back">← Powrót do menu głównego</a>
+    </div>
+
+</body>
+</html>
