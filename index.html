@@ -11,38 +11,37 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
+            /* Tło z obrazka */
+            background: linear-gradient(rgba(244, 244, 249, 0.8), rgba(244, 244, 249, 0.8)), url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             text-align: center;
+            padding: 20px 0;
         }
         .container {
             background: white;
             padding: 2.5rem;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-width: 800px; /* Zwiększyłem szerokość pod kafelki */
             width: 90%;
         }
-        /* Styl dla Twojego logo */
         .logo {
-            max-width: 180px; /* Nieco większe dla lepszej widoczności */
+            max-width: 180px;
             height: auto;
             margin-bottom: 15px;
         }
         h1 {
             color: #2c3e50;
             margin: 10px 0;
-            font-size: 1.8rem;
-        }
-        p {
-            line-height: 1.6;
-            color: #666;
-            margin-bottom: 20px;
+            font-size: 2rem;
         }
         .status {
             display: inline-block;
@@ -52,33 +51,63 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
-        .contact-info {
-            font-weight: bold;
+
+        /* Styl kafelków */
+        .tiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .tile {
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 10px;
+            text-decoration: none;
             color: #2c3e50;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
+        .tile:hover {
+            background: #2c3e50;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
         .footer {
-            margin-top: 25px;
+            margin-top: 35px;
             font-size: 0.8rem;
             color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Wyświetlanie Twojego logo -->
         <img src="logo.png" alt="J.K Serwis PC Logo" class="logo">
         
         <div class="status">Strona w budowie</div>
         <h1>J.K Serwis PC</h1>
-        <p>Twój komputer potrzebuje pomocy? Jesteśmy w trakcie przygotowywania nowej odsłony naszej strony internetowej.</p>
-        
-        <div class="contact-info">
-            Zapraszamy wkrótce!
+        <p>Wybierz interesującą Cię kategorię:</p>
+
+        <!-- Sekcja kafelków -->
+        <div class="tiles-grid">
+            <a href="#" class="tile">Programy podstawowe</a>
+            <a href="#" class="tile">Programy opcjonalne</a>
+            <a href="#" class="tile">Systemy operacyjne</a>
+            <a href="#" class="tile">Instrukcje</a>
+            <a href="#" class="tile">Ciekawe strony</a>
         </div>
         
         <div class="footer">
