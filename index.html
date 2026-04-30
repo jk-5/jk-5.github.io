@@ -27,28 +27,29 @@
 
         .container {
             background: rgba(30, 30, 35, 0.95);
-            padding: 3rem 2.5rem; /* Zwiększony padding góra/dół */
+            padding: 3rem 2.5rem;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            max-width: 450px;
+            max-width: 500px; /* Nieco szerszy kontener dla większego logo */
             width: 90%;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Powiększone i wyśrodkowane logo */
+        /* Bardzo duże logo */
         .logo {
-            max-width: 240px; /* Zwiększone z 160px */
+            max-width: 320px; /* Zwiększone z 240px */
             width: 100%;
             height: auto;
-            margin: 0 auto 30px auto; /* Wyśrodkowanie i odstęp pod logo */
+            margin: 0 auto 35px auto;
             display: block;
-            filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
+            filter: drop-shadow(0 0 20px rgba(0,0,0,0.7));
         }
 
         p {
             color: #b0b0b0;
             margin-bottom: 30px;
-            font-size: 1rem;
+            font-size: 1.1rem; /* Nieco większy tekst opisu */
+            letter-spacing: 0.5px;
         }
 
         .tiles-list {
@@ -60,32 +61,32 @@
         .tile {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 18px;
+            padding: 20px; /* Większe przyciski do kompletu */
             border-radius: 12px;
             text-decoration: none;
             color: #ffffff;
             font-weight: 500;
             transition: all 0.2s ease-in-out;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
         }
 
         .tile:hover {
             background: #0078d4;
             border-color: #0086f0;
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(0, 120, 212, 0.4);
+            transform: scale(1.03);
+            box-shadow: 0 5px 20px rgba(0, 120, 212, 0.5);
         }
 
         .footer {
-            margin-top: 40px;
-            font-size: 0.75rem;
-            color: #666;
+            margin-top: 45px;
+            font-size: 0.8rem;
+            color: #555;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 20px;
         }
 
         .footer a {
-            color: #888;
+            color: #666;
             text-decoration: none;
         }
     </style>
@@ -93,12 +94,11 @@
 <body>
 
     <div class="container">
-        <!-- Logo wyśrodkowane i powiększone -->
+        <!-- Maksymalnie wyeksponowane logo -->
         <img src="logo.png" alt="J.K Serwis PC Logo" class="logo">
         
-        <p>Wybierz interesującą Cię kategorię:</p>
+        <p>Wybierz kategorię:</p>
 
-        <!-- Lista kafelków pionowo -->
         <div class="tiles-list">
             <a href="#" class="tile">Programy podstawowe</a>
             <a href="#" class="tile">Programy opcjonalne</a>
