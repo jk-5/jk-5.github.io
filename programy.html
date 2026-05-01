@@ -18,12 +18,12 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px 0;
+            padding: 40px 0;
         }
 
         .container {
             background: rgba(30, 30, 35, 0.95);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             max-width: 600px;
@@ -31,67 +31,158 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        h1 { color: #ffffff; font-size: 1.5rem; margin-bottom: 20px; border-bottom: 2px solid #0078d4; padding-bottom: 10px; }
+        /* Logo jak na stronie głównej */
+        .logo {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 25px auto;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.7));
+        }
+
+        h1 { 
+            color: #ffffff; 
+            font-size: 1.6rem; 
+            margin-bottom: 25px; 
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
 
         .download-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            text-align: left;
+            gap: 12px;
         }
 
         .item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 15px 20px;
+            border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.2s;
+            text-align: left;
+        }
+
+        .item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .item-text {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .item-name {
+            display: block;
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        .item-desc {
+            display: block;
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            line-height: 1.4;
         }
 
         .btn-download {
             background: #0078d4;
             color: white;
             text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 5px;
+            padding: 8px 18px;
+            border-radius: 8px;
             font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
             transition: 0.2s;
         }
 
-        .btn-download:hover { background: #005a9e; }
+        .btn-download:hover { 
+            background: #0086f0;
+            box-shadow: 0 0 15px rgba(0, 120, 212, 0.4);
+        }
 
         .btn-back {
             display: inline-block;
-            margin-top: 30px;
+            margin-top: 35px;
             color: #888;
             text-decoration: none;
             font-size: 0.9rem;
             transition: 0.3s;
         }
 
-        .btn-back:hover { color: #fff; }
+        .btn-back:hover { color: #0078d4; }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <!-- Logo spójne z index.html -->
+        <img src="logo.png" alt="J.K Serwis PC Logo" class="logo">
+        
         <h1>Programy Podstawowe</h1>
         
         <div class="download-list">
-            <!-- Przykładowe elementy - możesz zmieniać nazwy i linki -->
+            <!-- Adobe Acrobat Reader DC -->
             <div class="item">
-                <span>Przeglądarka Chrome</span>
+                <div class="item-text">
+                    <span class="item-name">Adobe Acrobat Reader DC</span>
+                    <span class="item-desc">Niezbędne narzędzie do przeglądania i drukowania dokumentów PDF.</span>
+                </div>
+                <a href="https://get.adobe.com/pl/reader/" target="_blank" class="btn-download">Pobierz</a>
+            </div>
+
+            <!-- Google Chrome -->
+            <div class="item">
+                <div class="item-text">
+                    <span class="item-name">Google Chrome</span>
+                    <span class="item-desc">Najpopularniejsza, szybka i bezpieczna przeglądarkka internetowa.</span>
+                </div>
                 <a href="https://www.google.com/chrome/" target="_blank" class="btn-download">Pobierz</a>
             </div>
+
+            <!-- IrfanView -->
             <div class="item">
-                <span>VLC Media Player</span>
-                <a href="https://www.videolan.org/" target="_blank" class="btn-download">Pobierz</a>
+                <div class="item-text">
+                    <span class="item-name">IrfanView</span>
+                    <span class="item-desc">Lekka i szybka przeglądarka grafiki obsługująca niemal wszystkie formaty.</span>
+                </div>
+                <a href="https://www.irfanview.com/64bit.htm" target="_blank" class="btn-download">Pobierz</a>
             </div>
+
+            <!-- K-Lite Codec Pack -->
             <div class="item">
-                <span>7-Zip Archiver</span>
-                <a href="https://www.7-zip.org/" target="_blank" class="btn-download">Pobierz</a>
+                <div class="item-text">
+                    <span class="item-name">K-Lite Codec Pack Mega</span>
+                    <span class="item-desc">Zestaw kodeków pozwalający na odtwarzanie dowolnego filmu i muzyki.</span>
+                </div>
+                <a href="https://codecguide.com/download_k-lite_codec_pack_mega.htm" target="_blank" class="btn-download">Pobierz</a>
+            </div>
+
+            <!-- Microsoft Office 2021 -->
+            <div class="item">
+                <div class="item-text">
+                    <span class="item-name">Microsoft Office 2021</span>
+                    <span class="item-desc">Pakiet biurowy (Word, Excel, PowerPoint) do pracy i nauki.</span>
+                </div>
+                <a href="https://www.instalki.pl/download/programy/windows/biuro/pakiety-biurowe/microsoft-office-2/" target="_blank" class="btn-download">Pobierz</a>
+            </div>
+
+            <!-- WinRAR -->
+            <div class="item">
+                <div class="item-text">
+                    <span class="item-name">WinRAR</span>
+                    <span class="item-desc">Potężne narzędzie do kompresji i rozpakowywania plików (ZIP, RAR).</span>
+                </div>
+                <a href="https://www.win-rar.com/download.html" target="_blank" class="btn-download">Pobierz</a>
             </div>
         </div>
 

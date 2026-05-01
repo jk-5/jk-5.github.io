@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciekawe Strony | J.K Serwis PC</title>
+    <link rel="icon" type="image/x-icon" href="https://github.com/jk-5/jk-5.github.io/raw/refs/heads/main/favicon.ico">
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(rgba(15, 15, 20, 0.9), rgba(15, 15, 20, 0.9)), url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 0;
+        }
+
+        .container {
+            background: rgba(30, 30, 35, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 25px auto;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.7));
+        }
+
+        h1 { 
+            color: #ffffff; 
+            font-size: 1.6rem; 
+            margin-bottom: 25px; 
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .web-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .web-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 15px 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        .web-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.02);
+            border-color: #6f42c1;
+        }
+
+        .web-info {
+            text-align: left;
+        }
+
+        .web-name {
+            display: block;
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .btn-visit {
+            background: #6f42c1; /* Fioletowy dla ciekawych stron */
+            color: white;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-visit:hover { 
+            background: #5a32a3;
+            box-shadow: 0 0 15px rgba(111, 66, 193, 0.4);
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 35px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover { color: #0078d4; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png" alt="J.K Serwis PC Logo" class="logo">
+        
+        <h1>Ciekawe Strony</h1>
+        
+        <div class="web-list">
+            <!-- Pozycja Testowa -->
+            <div class="web-item">
+                <div class="web-info">
+                    <span class="web-name">Test</span>
+                </div>
+                <a href="#" target="_blank" class="btn-visit">Odwiedź</a>
+            </div>
+        </div>
+
+        <a href="index.html" class="btn-back">← Powrót do menu głównego</a>
+    </div>
+
+</body>
+</html>

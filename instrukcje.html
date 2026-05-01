@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrukcje | J.K Serwis PC</title>
+    <link rel="icon" type="image/x-icon" href="https://github.com/jk-5/jk-5.github.io/raw/refs/heads/main/favicon.ico">
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(rgba(15, 15, 20, 0.9), rgba(15, 15, 20, 0.9)), url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 0;
+        }
+
+        .container {
+            background: rgba(30, 30, 35, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 25px auto;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.7));
+        }
+
+        h1 { 
+            color: #ffffff; 
+            font-size: 1.6rem; 
+            margin-bottom: 25px; 
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .instruction-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .instruction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 15px 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        .instruction-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .instruction-info {
+            text-align: left;
+        }
+
+        .instruction-name {
+            display: block;
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .btn-view {
+            background: #28a745; /* Zielony kolor dla odróżnienia instrukcji od pobierania */
+            color: white;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-view:hover { 
+            background: #218838;
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 35px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover { color: #0078d4; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png" alt="J.K Serwis PC Logo" class="logo">
+        
+        <h1>Instrukcje Serwisowe</h1>
+        
+        <div class="instruction-list">
+            <!-- Pozycja Testowa -->
+            <div class="instruction-item">
+                <div class="instruction-info">
+                    <span class="instruction-name">Test</span>
+                </div>
+                <a href="#" target="_blank" class="btn-view">Zobacz</a>
+            </div>
+        </div>
+
+        <a href="index.html" class="btn-back">← Powrót do menu głównego</a>
+    </div>
+
+</body>
+</html>

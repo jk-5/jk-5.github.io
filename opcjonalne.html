@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programy Opcjonalne | J.K Serwis PC</title>
+    <link rel="icon" type="image/x-icon" href="https://github.com/jk-5/jk-5.github.io/raw/refs/heads/main/favicon.ico">
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(rgba(15, 15, 20, 0.9), rgba(15, 15, 20, 0.9)), url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 0;
+        }
+
+        .container {
+            background: rgba(30, 30, 35, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            max-width: 700px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 25px auto;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.7));
+        }
+
+        h1 { 
+            color: #ffffff; 
+            font-size: 1.6rem; 
+            margin-bottom: 25px; 
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .download-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 70vh; /* Dodano przewijanie przy tak długiej liście */
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        /* Styl przewijania (scrollbar) */
+        .download-list::-webkit-scrollbar { width: 6px; }
+        .download-list::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+        .download-list::-webkit-scrollbar-thumb { background: #0078d4; border-radius: 10px; }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.2s;
+            text-align: left;
+        }
+
+        .item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .item-text { flex: 1; padding-right: 15px; }
+        .item-name { display: block; font-weight: bold; color: #ffffff; font-size: 1rem; margin-bottom: 2px; }
+        .item-desc { display: block; font-size: 0.8rem; color: #b0b0b0; line-height: 1.3; }
+
+        .btn-download {
+            background: #0078d4;
+            color: white;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+
+        .btn-download:hover { background: #0086f0; }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 30px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover { color: #0078d4; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png" alt="J.K Serwis PC Logo" class="logo">
+        <h1>Programy Opcjonalne</h1>
+        
+        <div class="download-list">
+            <div class="item"><div class="item-text"><span class="item-name">AIDA64 Extreme</span><span class="item-desc">Diagnostyka i testy stabilności podzespołów.</span></div><a href="https://www.aida64.com/downloads" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Audacity</span><span class="item-desc">Darmowy edytor plików dźwiękowych.</span></div><a href="https://www.audacityteam.org/download/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Brave Browser</span><span class="item-desc">Przeglądarka dbająca o prywatność i blokująca reklamy.</span></div><a href="https://brave.com/download/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Caprine</span><span class="item-desc">Desktopowy klient dla komunikatora Messenger.</span></div><a href="https://github.com/sindresorhus/caprine/releases" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Daemon Tools Pro</span><span class="item-desc">Emulacja napędów i obrazów płyt.</span></div><a href="https://www.daemon-tools.cc/pol/products/dtproadv" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">EA App</span><span class="item-desc">Platforma do gier wydawnictwa Electronic Arts.</span></div><a href="https://www.ea.com/pl-pl/ea-app" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Epic Games Store</span><span class="item-desc">Sklep i launcher gier od Epic Games.</span></div><a href="https://store.epicgames.com/pl/download" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">GIMP</span><span class="item-desc">Darmowy program do zaawansowanej obróbki grafiki.</span></div><a href="https://www.gimp.org/downloads/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">GOG Galaxy</span><span class="item-desc">Launcher integrujący biblioteki gier z różnych platform.</span></div><a href="https://www.gog.com/galaxy" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">HWMonitor</span><span class="item-desc">Monitorowanie temperatur i napięć podzespołów.</span></div><a href="https://www.cpuid.com/softwares/hwmonitor.html" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">InfraRecorder</span><span class="item-desc">Lekki program do nagrywania płyt CD/DVD.</span></div><a href="http://infrarecorder.org/?page_id=5" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Install Creator Pro</span><span class="item-desc">Narzędzie do tworzenia instalatorów programów.</span></div><a href="https://www.clickteam.com/install-creator-2" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Internet Download Manager</span><span class="item-desc">Przyspieszanie pobierania plików z sieci.</span></div><a href="https://www.internetdownloadmanager.com/download.html" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">IObit Uninstaller</span><span class="item-desc">Skuteczne usuwanie niechcianych programów.</span></div><a href="https://www.iobit.com/en/advanceduninstaller.php" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">IObit Unlocker</span><span class="item-desc">Odblokowywanie plików używanych przez inne procesy.</span></div><a href="https://www.iobit.com/en/iobit-unlocker.php" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">JDownloader 2</span><span class="item-desc">Menedżer pobierania z serwisów hostingowych.</span></div><a href="https://jdownloader.org/download/index" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">LocalSend</span><span class="item-desc">Przesyłanie plików w sieci lokalnej (Open Source).</span></div><a href="https://localsend.org/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Macro Recorder</span><span class="item-desc">Nagrywanie i odtwarzanie automatyzacji myszy i klawiatury.</span></div><a href="https://www.macrorecorder.com/download/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Mipony</span><span class="item-desc">Menedżer pobierania zoptymalizowany pod hostingi.</span></div><a href="https://www.mipony.net/en/download/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">MSI Afterburner</span><span class="item-desc">Podkręcanie i monitorowanie kart graficznych.</span></div><a href="https://www.msi.com/Landing/afterburner/graphics-cards" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">MyPhoneExplorer</span><span class="item-desc">Zarządzanie telefonem z poziomu komputera.</span></div><a href="https://www.fjsoft.at/en/downloads.php" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Notepad++</span><span class="item-desc">Zaawansowany edytor tekstu i kodu.</span></div><a href="https://notepad-plus-plus.org/downloads/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">OBS Studio</span><span class="item-desc">Nagrywanie ekranu i streaming wideo.</span></div><a href="https://obsproject.com/download" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Playnite</span><span class="item-desc">Uniwersalny menedżer biblioteki gier.</span></div><a href="https://playnite.link/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">PowerToys</span><span class="item-desc">Zestaw narzędzi od Microsoftu dla zaawansowanych.</span></div><a href="https://apps.microsoft.com/store/detail/microsoft-powertoys/XP89DCGQ3K6VLD" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">PuTTY</span><span class="item-desc">Klient SSH i Telnet do połączeń zdalnych.</span></div><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">qBittorrent</span><span class="item-desc">Lekki i darmowy klient sieci BitTorrent.</span></div><a href="https://www.qbittorrent.org/download" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">REAPER</span><span class="item-desc">Profesjonalna stacja robocza audio (DAW).</span></div><a href="https://www.reaper.fm/download.php" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Rufus</span><span class="item-desc">Tworzenie bootowalnych nośników USB.</span></div><a href="https://rufus.ie/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Spotify</span><span class="item-desc">Odtwarzacz muzyki i podcastów w chmurze.</span></div><a href="https://www.spotify.com/download/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Steam</span><span class="item-desc">Największa platforma cyfrowej dystrybucji gier.</span></div><a href="https://store.steampowered.com/about/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">TeamSpeak</span><span class="item-desc">Komunikator głosowy dla graczy.</span></div><a href="https://www.teamspeak.com/en/downloads/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">TeamViewer</span><span class="item-desc">Zdalne sterowanie i pomoc techniczna online.</span></div><a href="https://www.teamviewer.com/pl/download/windows/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Thunderbird</span><span class="item-desc">Darmowy i bezpieczny klient poczty e-mail.</span></div><a href="https://www.thunderbird.net/pl/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">TightVNC</span><span class="item-desc">Bezpłatne oprogramowanie do zdalnego pulpitu.</span></div><a href="https://www.tightvnc.com/download.php" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Total Commander</span><span class="item-desc">Zaawansowany menedżer plików dla Windows.</span></div><a href="https://www.ghisler.com/download.htm" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">TrafficMonitor</span><span class="item-desc">Monitorowanie prędkości sieci na pasku zadań.</span></div><a href="https://github.com/zhongyang219/TrafficMonitor/releases" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Ubisoft Connect</span><span class="item-desc">Platforma do gier wydawnictwa Ubisoft.</span></div><a href="https://ubisoftconnect.com/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">VEGAS Pro</span><span class="item-desc">Zaawansowany system montażu wideo.</span></div><a href="https://www.instalki.pl/download/programy/windows/multimedia/obrobka-video/vegas-pro/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Ventoy</span><span class="item-desc">Tworzenie multibootowalnych nośników USB.</span></div><a href="https://www.ventoy.net/en/download.html" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">VLC Media Player</span><span class="item-desc">Uniwersalny odtwarzacz plików multimedialnych.</span></div><a href="https://www.videolan.org/vlc/" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Volume2</span><span class="item-desc">Zaawansowany zamiennik systemowej regulacji głośności.</span></div><a href="https://github.com/irzyxa/Volume2" target="_blank" class="btn-download">Pobierz</a></div>
+            <div class="item"><div class="item-text"><span class="item-name">Winaero Tweaker</span><span class="item-desc">Narzędzie do personalizacji ukrytych ustawień Windows.</span></div><a href="https://winaerotweaker.com/" target="_blank" class="btn-download">Pobierz</a></div>
+        </div>
+
+        <a href="index.html" class="btn-back">← Powrót do menu głównego</a>
+    </div>
+
+</body>
+</html>
