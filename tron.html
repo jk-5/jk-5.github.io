@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRON</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #050505;
+            color: #00f2ff;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        canvas {
+            background: #000;
+            display: none;
+            cursor: none;
+        }
+
+        #ui {
+            text-align: center;
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 40px;
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Górna belka - BIAŁA, bez wypełnienia */
+        #top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: calc(100% - 8px);
+            height: 50px;
+            border: 2px solid #ffffff; /* Cieńsza biała linia */
+            background: transparent;
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 18px;
+            z-index: 10;
+            box-sizing: border-box;
+            margin: 4px;
+        }
+
+        /* Białe ramki boczne i dolna */
+        .game-border {
+            position: absolute;
+            border: 2px solid #ffffff;
+            background: transparent;
+            z-index: 9;
+            display: none;
+            box-sizing: border-box;
+        }
+        #border-left { top: 50px; left: 4px; width: 4px; height: calc(100% - 54px); border-width: 0 0 0 2px; }
+        #border-right { top: 50px; right: 4px; width: 4px; height: calc(100% - 54px); border-width: 0 2px 0 0; }
+        #border-bottom { bottom: 4px; left: 4px; width: calc(100% - 8px); height: 4px; border-width: 0 0 2px 0; }
+
+        .heart-container { display: flex; gap: 5px; font-size: 20px; align-items: center; }
+        .p1-label { color: #00ff41; margin-right: 10px; }
+        .p2-label { color: #008cff; margin-right: 10px; }
+
+        #notification {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            pointer-events: none;
+            z-index: 15;
+            display: none;
+            text-shadow: 0 0 15px currentColor;
+        }
+
+        .menu-buttons { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.2s;
+        }
+        button:hover { background: rgba(255, 255, 255, 0.1); box-shadow: 0 0 15px #ffffff; }
+        h1 { color: #ffffff; }
+    </style>
+</head>
+<body>
+
+    <div id="ui">
+        <h1 id="msg">TRON</h1>
+        <p>WYBIERZ TRYB GRY</p>
+        <div class="menu-buttons">
+            <button onclick="initGame(true)">1 Gracz vs Komputer</button>
+            <button onclick="initGame(false)">2 Graczy Lokalnie</button>
+        </div>
+    </div>
+
+    <div id="top-bar">
+        <div class="heart-container">
+            <span class="p1-label">P1</span>
+            <span id="p1-hearts"></span>
+        </div>
+        <div class="heart-container">
+            <span id="p2-hearts"></span>
+            <span id="p2-name" class="p2-label">CPU</span>
+        </div>
+    </div>
+
+    <div id="border-left" class="game-border"></div>
+    <div id="border-right" class="game-border"></div>
+    <div id="border-bottom" class="game-border"></div>
+
+    <div id="notification"></div>
+    <canvas id="game"></canvas>
+
+<script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const ui = document.getElementById('ui');
+    const topBar = document.getElementById('top-bar');
+    const borders = document.querySelectorAll('.game-border');
+    const notification = document.getElementById('notification');
+
+    const GRID_SIZE = 4; 
+    const BAR_HEIGHT = 50;
+    const BORDER_GAP = 8;
+    
+    let gameLoop;
+    let p1, p2;
+    let grid;
+    let canvasW, canvasH;
+    let isPaused = false;
+    let vsCPU = true;
+    const FRAME_RATE = 1000 / 45; 
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playSfx(type) {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        if (type === 'crash') {
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(100, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.2);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+        }
+        osc.connect(gain); gain.connect(audioCtx.destination);
+    }
+
+    class Bike {
+        constructor(color, direction, name) {
+            this.color = color;
+            this.name = name;
+            this.lives = 3;
+            this.reset(0, 0, direction);
+        }
+        reset(x, y, dir) {
+            this.x = x; this.y = y;
+            this.dir = dir; this.nextDir = dir;
+        }
+        update() {
+            this.dir = this.nextDir;
+            if (this.dir === 0) this.x += GRID_SIZE;
+            else if (this.dir === 1) this.y += GRID_SIZE;
+            else if (this.dir === 2) this.x -= GRID_SIZE;
+            else if (this.dir === 3) this.y -= GRID_SIZE;
+        }
+    }
+
+    function updateHearts() {
+        const full = "❤️";
+        const empty = "🖤";
+        document.getElementById('p1-hearts').innerText = full.repeat(p1.lives) + empty.repeat(3 - p1.lives);
+        document.getElementById('p2-hearts').innerText = empty.repeat(3 - p2.lives) + full.repeat(p2.lives);
+    }
+
+    function initGame(cpuMode) {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        vsCPU = cpuMode;
+        canvasW = window.innerWidth;
+        canvasH = window.innerHeight;
+        canvas.width = canvasW;
+        canvas.height = canvasH;
+
+        ui.style.display = 'none';
+        canvas.style.display = 'block';
+        topBar.style.display = 'flex';
+        borders.forEach(b => b.style.display = 'block');
+        
+        p1 = new Bike('#00ff41', 0, "GRACZ 1");
+        p2 = new Bike('#008cff', 2, vsCPU ? "KOMPUTER" : "GRACZ 2");
+        document.getElementById('p2-name').innerText = vsCPU ? "CPU" : "P2";
+
+        resetBoard();
+        if (gameLoop) clearInterval(gameLoop);
+        gameLoop = setInterval(draw, FRAME_RATE);
+    }
+
+    function resetBoard() {
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, canvasW, canvasH);
+        grid = new Uint8Array(canvasW * canvasH);
+        
+        const startX1 = Math.floor((canvasW * 0.08) / GRID_SIZE) * GRID_SIZE;
+        const startX2 = Math.floor((canvasW * 0.92) / GRID_SIZE) * GRID_SIZE;
+        const startY = Math.floor((canvasH / 2) / GRID_SIZE) * GRID_SIZE;
+
+        p1.reset(startX1, startY, 0);
+        p2.reset(startX2, startY, 2);
+        updateHearts();
+        isPaused = false;
+    }
+
+    function isSafe(nx, ny) {
+        if (nx < BORDER_GAP || nx >= canvasW - BORDER_GAP) return false;
+        if (ny < BAR_HEIGHT || ny >= canvasH - BORDER_GAP) return false;
+        return !grid[ny * canvasW + nx];
+    }
+
+    function handleAI() {
+        const getC = (dist) => {
+            if (p2.dir === 0) return {nx: p2.x + GRID_SIZE*dist, ny: p2.y};
+            if (p2.dir === 1) return {nx: p2.x, ny: p2.y + GRID_SIZE*dist};
+            if (p2.dir === 2) return {nx: p2.x - GRID_SIZE*dist, ny: p2.y};
+            return {nx: p2.x, ny: p2.y - GRID_SIZE*dist};
+        };
+
+        if (!isSafe(getC(1).nx, getC(1).ny) || !isSafe(getC(2).nx, getC(2).ny)) {
+            const alts = [0,1,2,3].filter(d => Math.abs(d - p2.dir) !== 2);
+            let best = p2.dir, maxS = -1;
+            alts.forEach(d => {
+                let s = 0;
+                for(let i=1; i<20; i++) {
+                    let nx = p2.x + (d===0?i:d===2?-i:0)*GRID_SIZE;
+                    let ny = p2.y + (d===1?i:d===3?-i:0)*GRID_SIZE;
+                    if(isSafe(nx, ny)) s++; else break;
+                }
+                if(s > maxS) { maxS = s; best = d; }
+            });
+            p2.nextDir = best;
+        }
+    }
+
+    function draw() {
+        if (isPaused) return;
+        if (vsCPU) handleAI();
+
+        p1.update(); p2.update();
+
+        const c1 = !isSafe(p1.x, p1.y);
+        const c2 = !isSafe(p2.x, p2.y);
+        const head = (Math.abs(p1.x-p2.x)<GRID_SIZE && Math.abs(p1.y-p2.y)<GRID_SIZE);
+
+        if (c1 || c2 || head) {
+            isPaused = true; playSfx('crash');
+            let txt = "";
+            if (c1 && c2 || head) { p1.lives--; p2.lives--; txt = "REMIS!"; }
+            else if (c1) { p1.lives--; txt = "P1 TRACI ŻYCIE"; }
+            else { p2.lives--; txt = `${p2.name} TRACI ŻYCIE`; }
+
+            notification.innerText = txt;
+            notification.style.color = c1 ? p1.color : p2.color;
+            notification.style.display = 'block';
+            updateHearts();
+
+            setTimeout(() => {
+                if (p1.lives <= 0 || p2.lives <= 0) {
+                    document.getElementById('msg').innerText = p1.lives <= 0 ? (p2.lives<=0?"REMIS":"P2 WYGRYWA") : "P1 WYGRYWA";
+                    ui.style.display = 'block'; canvas.style.display = 'none';
+                    topBar.style.display = 'none'; borders.forEach(b => b.style.display = 'none');
+                } else {
+                    notification.style.display = 'none'; resetBoard();
+                }
+            }, 1500);
+        } else {
+            grid[p1.y * canvasW + p1.x] = 1;
+            grid[p2.y * canvasW + p2.x] = 1;
+            ctx.fillStyle = p1.color; ctx.fillRect(p1.x, p1.y, GRID_SIZE, GRID_SIZE);
+            ctx.fillStyle = p2.color; ctx.fillRect(p2.x, p2.y, GRID_SIZE, GRID_SIZE);
+        }
+    }
+
+    window.addEventListener('keydown', e => {
+        const k = e.key.toLowerCase();
+        if (k === 'w' && p1.dir !== 1) p1.nextDir = 3;
+        if (k === 's' && p1.dir !== 3) p1.nextDir = 1;
+        if (k === 'a' && p1.dir !== 0) p1.nextDir = 2;
+        if (k === 'd' && p1.dir !== 2) p1.nextDir = 0;
+        if (!vsCPU) {
+            if (e.key === 'ArrowUp' && p2.dir !== 1) p2.nextDir = 3;
+            if (e.key === 'ArrowDown' && p2.dir !== 3) p2.nextDir = 1;
+            if (e.key === 'ArrowLeft' && p2.dir !== 0) p2.nextDir = 2;
+            if (e.key === 'ArrowRight' && p2.dir !== 2) p2.nextDir = 0;
+        }
+    });
+</script>
+</body>
+</html>

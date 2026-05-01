@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ciekawe Strony | J.K Serwis PC</title>
+    <title>Strefa Gier | J.K Serwis PC</title>
     <link rel="icon" type="image/x-icon" href="https://github.com/jk-5/jk-5.github.io/raw/refs/heads/main/favicon.ico">
     <style>
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            /* Idealna czerń OLED */
             background: #000000;
             color: #e0e0e0;
             display: flex;
@@ -20,22 +19,17 @@
             overflow-x: hidden;
         }
 
-        /* Tło animowane */
         #fluid-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: 0;
         }
 
         .container {
-            /* Glassmorphism */
             background: rgba(30, 30, 35, 0.85);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            
             padding: 2.5rem;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.8);
@@ -63,16 +57,18 @@
             margin-bottom: 25px; 
             border-bottom: 1px solid rgba(255,255,255,0.1);
             padding-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .web-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            pointer-events: auto; /* Aktywacja kliknięć wewnątrz kontenera */
+            pointer-events: auto;
         }
 
-        .web-item {
+        .game-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -82,27 +78,29 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: left;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .web-item:hover {
+        .game-item:hover {
             background: rgba(255, 255, 255, 0.08);
             transform: scale(1.02);
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .web-info {
+        .game-info {
             flex: 1;
             padding-right: 15px;
         }
 
-        .web-name {
+        .game-name {
             display: block;
             font-weight: bold;
             color: #ffffff;
             font-size: 1.1rem;
         }
 
-        .web-desc {
+        .game-desc {
             font-size: 0.85rem;
             color: #b0b0b0;
             display: block;
@@ -110,21 +108,20 @@
             line-height: 1.4;
         }
 
-        .btn-visit {
+        .btn-play {
             color: white;
-            text-decoration: none;
             padding: 8px 20px;
             border-radius: 8px;
             font-size: 0.9rem;
             font-weight: 600;
+            background: #6f42c1;
             transition: 0.2s;
             white-space: nowrap;
-            background: #6f42c1; /* Domyślny fioletowy */
         }
 
-        .btn-visit:hover { 
+        .game-item:hover .btn-play {
             filter: brightness(1.2);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
 
         .btn-back {
@@ -139,74 +136,63 @@
 
         .btn-back:hover { color: #0078d4; }
 
-        /* Media queries dla urządzeń mobilnych */
         @media (max-width: 500px) {
-            .web-item { flex-direction: column; text-align: center; gap: 15px; }
-            .web-info { padding-right: 0; }
+            .game-item { flex-direction: column; text-align: center; gap: 15px; }
+            .game-info { padding-right: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Animacja Fluid w tle -->
     <canvas id="fluid-canvas"></canvas>
 
     <div class="container">
+        <!-- Logo przywrócone -->
         <img src="logo.png" alt="J.K Serwis PC Logo" class="logo">
         
-        <h1>Ciekawe Strony</h1>
+        <h1>Strefa Gier</h1>
         
         <div class="web-list">
-			<!-- Moje gry -->
-            <div class="web-item" style="border-left: 4px solid #f44336;">
-                <div class="web-info">
-                    <span class="web-name">Moje gry</span>
-                    <span class="web-desc">Klasyczne, proste gry przeglądarkowe.</span>
+            <!-- Snake -->
+            <a href="snake.html" class="game-item" style="border-left: 4px solid #4CAF50;">
+                <div class="game-info">
+                    <span class="game-name">Snake</span>
+                    <span class="game-desc">Klasyczna zręcznościówka. Zbieraj punkty i uważaj na własny ogon.</span>
                 </div>
-                <a href="games.html" target="_blank" class="btn-visit" style="background: #f44336;">Sprawdź</a>
-            </div>
-			
-            <!-- AdGuard DNS -->
-            <div class="web-item" style="border-left: 4px solid #6f42c1;">
-                <div class="web-info">
-                    <span class="web-name">AdGuard DNS</span>
-                    <span class="web-desc">Skuteczne blokowanie reklam na poziomie sieciowym bez dodatkowych aplikacji.</span>
-                </div>
-                <a href="adguard.html" class="btn-visit">Adresy</a>
-            </div>
+                <div class="btn-play" style="background: #4CAF50;">Graj</div>
+            </a>
 
-            <!-- Projekt SpotX -->
-            <div class="web-item" style="border-left: 4px solid #1db954;">
-                <div class="web-info">
-                    <span class="web-name">SpotX - Spotify No-Ads</span>
-                    <span class="web-desc">Modyfikacja Spotify na Windows: blokuje reklamy i odblokowuje funkcje premium.</span>
+            <!-- Tetris -->
+            <a href="tetris.html" class="game-item" style="border-left: 4px solid #e91e63;">
+                <div class="game-info">
+                    <span class="game-name">Tetris</span>
+                    <span class="game-desc">Logiczna układanka. Dopasuj klocki, aby wyczyścić linie.</span>
                 </div>
-                <a href="https://github.com/SpotX-Official/SpotX" target="_blank" class="btn-visit" style="background: #1db954;">GitHub</a>
-            </div>
+                <div class="btn-play" style="background: #e91e63;">Graj</div>
+            </a>
 
-            <!-- Projekt SmartTube -->
-            <div class="web-item" style="border-left: 4px solid #ff0000;">
-                <div class="web-info">
-                    <span class="web-name">SmartTube (Android TV)</span>
-                    <span class="web-desc">Brak reklam, SponsorBlock i obsługa 4K na telewizorach z Androidem.</span>
+            <!-- Arkanoid -->
+            <a href="arkanoid.html" class="game-item" style="border-left: 4px solid #ff9800;">
+                <div class="game-info">
+                    <span class="game-name">Arkanoid</span>
+                    <span class="game-desc">Odbijaj piłkę i niszcz kolorowe bloki na ekranie.</span>
                 </div>
-                <a href="https://github.com/yuliskov/SmartTube" target="_blank" class="btn-visit" style="background: #ff0000;">GitHub</a>
-            </div>
+                <div class="btn-play" style="background: #ff9800;">Graj</div>
+            </a>
 
-            <!-- Projekt ReVanced -->
-            <div class="web-item" style="border-left: 4px solid #7084fd;">
-                <div class="web-info">
-                    <span class="web-name">ReVanced Manager (Android)</span>
-                    <span class="web-desc">Następca Vanced: blokowanie reklam w YouTube i modyfikowanie aplikacji.</span>
+            <!-- Tron -->
+            <a href="tron.html" class="game-item" style="border-left: 4px solid #2196f3;">
+                <div class="game-info">
+                    <span class="game-name">Tron</span>
+                    <span class="game-desc">Szybka rywalizacja na cyfrowej arenie. Nie uderz w ścianę.</span>
                 </div>
-                <a href="https://github.com/revanced/revanced-manager" target="_blank" class="btn-visit" style="background: #7084fd;">GitHub</a>
-            </div>
+                <div class="btn-play" style="background: #2196f3;">Graj</div>
+            </a>
         </div>
 
-        <a href="index.html" class="btn-back">← Powrót do menu głównego</a>
+        <a href="ciekawe-strony.html" class="btn-back">← Powrót do ciekawych stron</a>
     </div>
 
-    <!-- Podpięcie skryptu animacji -->
     <script src="fluid.js"></script>
 
 </body>
