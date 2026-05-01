@@ -3,131 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instrukcje | J.K Serwis PC</title>
+    <title>Instrukcje Serwisowe | J.K Serwis PC</title>
     <link rel="icon" type="image/x-icon" href="https://github.com/jk-5/jk-5.github.io/raw/refs/heads/main/favicon.ico">
     <style>
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(rgba(15, 15, 20, 0.9), rgba(15, 15, 20, 0.9)), url('background.jpg');
+            background: linear-gradient(rgba(15, 15, 20, 0.95), rgba(15, 15, 20, 0.95)), url('background.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: #e0e0e0;
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            padding: 40px 0;
         }
 
         .container {
-            background: rgba(30, 30, 35, 0.95);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            max-width: 600px;
             width: 90%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 900px;
+            padding: 40px 20px;
             text-align: center;
         }
 
-        .logo {
-            max-width: 280px;
-            width: 100%;
-            height: auto;
-            margin: 0 auto 25px auto;
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .subtitle {
+            color: #2ecc71;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             display: block;
-            filter: drop-shadow(0 0 15px rgba(0,0,0,0.7));
+            margin-bottom: 40px;
         }
 
-        h1 { 
-            color: #ffffff; 
-            font-size: 1.6rem; 
-            margin-bottom: 25px; 
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 15px;
+        .instruction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .instruction-list {
+        .instruction-card {
+            background: rgba(30, 30, 35, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-decoration: none;
+            color: #e0e0e0;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-        }
-
-        .instruction-item {
-            display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            background: rgba(255, 255, 255, 0.04);
-            padding: 15px 25px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.3s;
+            backdrop-filter: blur(10px);
         }
 
-        .instruction-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateX(5px);
+        .instruction-card:hover {
+            transform: translateY(-10px);
+            background: rgba(46, 204, 113, 0.1);
+            border-color: #2ecc71;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        .instruction-info {
-            text-align: left;
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
         }
 
-        .instruction-name {
-            display: block;
-            font-weight: bold;
-            color: #ffffff;
-            font-size: 1.1rem;
+        .instruction-card h3 {
+            margin: 10px 0;
+            color: #fff;
+            font-size: 1.2rem;
         }
 
-        .btn-view {
-            background: #28a745; /* Zielony kolor dla odróżnienia instrukcji od pobierania */
-            color: white;
-            text-decoration: none;
-            padding: 8px 20px;
-            border-radius: 8px;
+        .instruction-card p {
             font-size: 0.9rem;
-            font-weight: 600;
-            transition: 0.2s;
+            color: #aaa;
+            line-height: 1.4;
         }
 
-        .btn-view:hover { 
-            background: #218838;
-            box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
-        }
-
-        .btn-back {
+        .btn-home {
+            margin-top: 50px;
             display: inline-block;
-            margin-top: 35px;
             color: #888;
             text-decoration: none;
             font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
             transition: 0.3s;
         }
 
-        .btn-back:hover { color: #0078d4; }
+        .btn-home:hover {
+            color: #2ecc71;
+            border-color: #2ecc71;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <img src="logo.png" alt="J.K Serwis PC Logo" class="logo">
-        
-        <h1>Instrukcje</h1>
-        
-        <div class="instruction-list">
-            <!-- Pozycja Testowa -->
-            <div class="instruction-item">
-                <div class="instruction-info">
-                    <span class="instruction-name">Test</span>
-                </div>
-                <a href="#" target="_blank" class="btn-view">Zobacz</a>
-            </div>
+        <h1>Baza Wiedzy</h1>
+        <span class="subtitle">Instrukcje i procedury serwisowe</span>
+
+        <div class="instruction-grid">
+            
+            <!-- Edycja HOSTS -->
+            <a href="instrukcja-hosts.html" class="instruction-card">
+                <div class="icon">📝</div>
+                <h3>Plik HOSTS</h3>
+                <p>Jak bezpiecznie edytować plik hosts w Windows i zarządzać domanami.</p>
+            </a>
+
+            <!-- PowerShell History -->
+            <a href="instrukcja-ps-history.html" class="instruction-card">
+                <div class="icon">🧹</div>
+                <h3>Historia PowerShell</h3>
+                <p>Procedura czyszczenia historii wpisanych poleceń dla większej prywatności.</p>
+            </a>
+
+            <!-- Skaner MRT -->
+            <a href="instrukcja-mrt.html" class="instruction-card">
+                <div class="icon">🛡️</div>
+                <h3>Skaner MRT</h3>
+                <p>Uruchamianie wbudowanego narzędzia Microsoft do usuwania wirusów.</p>
+            </a>
+
         </div>
 
-        <a href="index.html" class="btn-back">← Powrót do menu głównego</a>
+        <a href="index.html" class="btn-home">← Powrót do strony głównej</a>
     </div>
 
 </body>

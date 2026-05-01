@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfiguracja AdGuard DNS | J.K Serwis PC</title>
+    <link rel="icon" type="image/x-icon" href="https://github.com/jk-5/jk-5.github.io/raw/refs/heads/main/favicon.ico">
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(rgba(15, 15, 20, 0.9), rgba(15, 15, 20, 0.9)), url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 0;
+        }
+
+        .container {
+            background: rgba(30, 30, 35, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            max-width: 700px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 { color: #ffffff; text-align: center; margin-bottom: 5px; }
+        .subtitle { display: block; text-align: center; color: #6f42c1; font-weight: bold; margin-bottom: 30px; }
+
+        .dns-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .dns-card h3 { margin-top: 0; color: #fff; border-bottom: 1px solid rgba(111, 66, 193, 0.3); padding-bottom: 10px; }
+        
+        .section-title { font-size: 0.8rem; text-transform: uppercase; color: #888; letter-spacing: 1px; display: block; margin: 10px 0 5px; }
+        
+        .address-box {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.95rem;
+            color: #00d4ff;
+            display: block;
+            margin-bottom: 5px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .desc { font-size: 0.85rem; color: #b0b0b0; line-height: 1.5; margin-top: 10px; }
+
+        .btn-back {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #888;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn-back:hover { color: #6f42c1; }
+
+        .tag { background: #6f42c1; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; vertical-align: middle; margin-left: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>AdGuard DNS</h1>
+        <span class="subtitle">Prywatność i blokowanie reklam</span>
+
+        <!-- Serwery Domyślne -->
+        <div class="dns-card">
+            <h3>Serwery domyślne <span class="tag">Polecane</span></h3>
+            <p class="desc">Blokuje reklamy i moduły śledzące w całym systemie.</p>
+            
+            <span class="section-title">IPv4</span>
+            <span class="address-box">94.140.14.14</span>
+            <span class="address-box">94.140.15.15</span>
+
+            <span class="section-title">IPv6</span>
+            <span class="address-box">2a10:50c0::ad1:ff</span>
+            <span class="address-box">2a10:50c0::ad2:ff</span>
+
+            <span class="section-title">Prywatny DNS (Host)</span>
+            <span class="address-box">dns.adguard.com</span>
+        </div>
+
+        <!-- Serwery Ochrony Rodziny -->
+        <div class="dns-card">
+            <h3>Ochrona rodziny</h3>
+            <p class="desc">Blokuje reklamy + treści dla dorosłych + wymusza SafeSearch.</p>
+            
+            <span class="section-title">IPv4</span>
+            <span class="address-box">94.140.14.15</span>
+            <span class="address-box">94.140.15.16</span>
+
+            <span class="section-title">IPv6</span>
+            <span class="address-box">2a10:50c0::bad1:ff</span>
+            <span class="address-box">2a10:50c0::bad2:ff</span>
+
+            <span class="section-title">Prywatny DNS (Host)</span>
+            <span class="address-box">dns-family.adguard.com</span>
+        </div>
+
+        <!-- Serwery Bez Filtrowania -->
+        <div class="dns-card">
+            <h3>Bez filtrowania</h3>
+            <p class="desc">Szybki DNS AdGuard, ale bez blokowania czegokolwiek.</p>
+            
+            <span class="section-title">IPv4</span>
+            <span class="address-box">94.140.14.140</span>
+            <span class="address-box">94.140.14.141</span>
+
+            <span class="section-title">IPv6</span>
+            <span class="address-box">2a10:50c0::1:ff</span>
+            <span class="address-box">2a10:50c0::2:ff</span>
+
+            <span class="section-title">Prywatny DNS (Host)</span>
+            <span class="address-box">dns-unfiltered.adguard.com</span>
+        </div>
+
+        <a href="ciekawe-strony.html" class="btn-back">← Powrót do menu</a>
+    </div>
+
+</body>
+</html>

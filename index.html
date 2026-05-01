@@ -30,14 +30,13 @@
             padding: 3rem 2.5rem;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            max-width: 500px; /* Nieco szerszy kontener dla większego logo */
+            max-width: 500px;
             width: 90%;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Bardzo duże logo */
         .logo {
-            max-width: 320px; /* Zwiększone z 240px */
+            max-width: 320px;
             width: 100%;
             height: auto;
             margin: 0 auto 35px auto;
@@ -48,7 +47,7 @@
         p {
             color: #b0b0b0;
             margin-bottom: 30px;
-            font-size: 1.1rem; /* Nieco większy tekst opisu */
+            font-size: 1.1rem;
             letter-spacing: 0.5px;
         }
 
@@ -61,7 +60,7 @@
         .tile {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 20px; /* Większe przyciski do kompletu */
+            padding: 20px;
             border-radius: 12px;
             text-decoration: none;
             color: #ffffff;
@@ -83,11 +82,17 @@
             color: #555;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 20px;
+            line-height: 1.6;
         }
 
         .footer a {
             color: #666;
             text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
+            color: #0078d4;
         }
     </style>
 </head>
@@ -104,11 +109,12 @@
             <a href="opcjonalne.html" class="tile">Programy opcjonalne</a>
             <a href="systemy.html" class="tile">Systemy operacyjne</a>
             <a href="instrukcje.html" class="tile">Instrukcje</a>
-            <a href="ciekawe-strony.html#" class="tile">Ciekawe strony</a>
+            <a href="ciekawe-strony.html" class="tile">Ciekawe strony</a>
         </div>
         
         <div class="footer">
-            &copy; 2026 J.K Serwis PC | <a href="https://jk-5.github.io">jk-5.github.io</a>
+            &copy; 2026 J.K Serwis PC | <a href="https://jk-5.github.io">jk-5.github.io</a><br>
+            Projekt: <a href="https://github.com/jk-5/PS1Install" target="_blank">PowerShell Multi Installer</a>
         </div>
     </div>
 
