@@ -6,62 +6,141 @@
     <title>Historia PowerShell | J.K Serwis PC</title>
     <link rel="icon" type="image/x-icon" href="https://github.com/jk-5/jk-5.github.io/raw/refs/heads/main/favicon.ico">
     <style>
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background: #0f0f14; 
-            color: #e0e0e0; 
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
-            min-height: 100vh;
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            /* Idealna czerń OLED */
+            background: #000000;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
-        .card { 
-            background: #1e1e23; 
-            padding: 30px; 
-            border-radius: 15px; 
-            max-width: 600px; 
+
+        /* Element tła animowanego */
+        #fluid-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            border: 1px solid #333; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            height: 100%;
+            z-index: 0;
         }
-        /* Poprawiona ramka na kod i ścieżki */
+
+        .card {
+            /* Efekt szklanej karty (Glassmorphism) */
+            background: rgba(30, 30, 35, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            max-width: 650px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        h1 { 
+            color: #ffffff; 
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .content-text {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            pointer-events: auto;
+        }
+
+        /* Ramka na komendy i ścieżki */
         .cmd-box { 
-            background: #000; 
-            padding: 15px; 
-            border-radius: 8px; 
-            font-family: 'Consolas', monospace; 
-            color: #ffca28; 
-            border: 1px solid #444; 
+            background: rgba(0, 0, 0, 0.6); 
+            padding: 18px; 
+            border-radius: 12px; 
+            font-family: 'Consolas', 'Monaco', monospace; 
+            color: #ffca28; /* Ciepły żółty dla czytelności kodu */
+            border: 1px solid rgba(255, 202, 40, 0.2); 
             margin: 15px 0;
-            font-size: 0.9rem;
-            /* Kluczowe poprawki zawijania: */
-            white-space: pre-wrap;      /* Zachowuje spacje, ale zawija tekst */
-            word-break: break-all;      /* Rozbija długie słowa/ścieżki */
-            overflow-wrap: break-word;  /* Dodatkowe zabezpieczenie */
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+            word-break: break-all;
             line-height: 1.5;
+            pointer-events: auto;
+            user-select: all; /* Ułatwia kopiowanie */
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
-        h1 { color: #2ecc71; border-bottom: 1px solid #333; padding-bottom: 10px; font-size: 1.5rem; }
-        strong { color: #fff; }
-        .btn-back { color: #888; text-decoration: none; display: inline-block; margin-top: 20px; transition: 0.3s; }
-        .btn-back:hover { color: #2ecc71; }
+
+        strong {
+            color: #fff;
+        }
+
+        .highlight {
+            color: #0078d4;
+            font-weight: bold;
+        }
+
+        .tip {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 15px;
+            display: block;
+            pointer-events: auto;
+        }
+
+        .btn-back { 
+            display: inline-block;
+            margin-top: 30px;
+            color: #888; 
+            text-decoration: none; 
+            font-size: 0.9rem;
+            transition: 0.3s;
+            pointer-events: auto;
+        }
+
+        .btn-back:hover { 
+            color: #0078d4; 
+        }
     </style>
 </head>
 <body>
+
+    <!-- Animacja tła -->
+    <canvas id="fluid-canvas"></canvas>
+
     <div class="card">
         <h1>Czyszczenie historii PowerShell</h1>
-        <p>Windows zapisuje każde polecenie wpisane w konsoli PowerShell w osobnym pliku tekstowym, co może ujawniać dane wrażliwe.</p>
         
-        <strong>Ścieżka do pliku historii:</strong>
+        <div class="content-text">
+            <p>System Windows automatycznie zapisuje historię wszystkich poleceń wpisywanych w konsoli PowerShell w pliku tekstowym. Może to stanowić zagrożenie dla prywatności, jeśli logi zawierają hasła lub ścieżki do poufnych plików.</p>
+        </div>
+
+        <strong>Lokalizacja pliku historii:</strong>
         <div class="cmd-box">%userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt</div>
 
-        <strong>Komenda natychmiastowego czyszczenia:</strong>
-        <p>Otwórz PowerShell i wklej poniższe polecenie, aby wyczyścić plik bez jego otwierania:</p>
+        <strong>Komenda szybkiego czyszczenia:</strong>
+        <div class="content-text">
+            <p>Aby błyskawicznie wyczyścić całą historię bez ręcznego szukania pliku, uruchom PowerShell i wklej poniższe polecenie:</p>
+        </div>
         <div class="cmd-box">Clear-Content (Get-PSReadLineOption).HistorySavePath</div>
 
-        <p style="font-size: 0.85rem; color: #888;">*Wskazówka: Możesz też ręcznie przejść do powyższej ścieżki i usunąć plik ConsoleHost_history.txt.</p>
+        <span class="tip">
+            <strong>Wskazówka:</strong> Możesz również otworzyć folder ze ścieżki powyżej w Eksploratorze plików i po prostu usunąć plik <em>ConsoleHost_history.txt</em>.
+        </span>
 
-        <a href="instrukcje.html" class="btn-back">← Powrót do instrukcji</a>
+        <a href="instrukcje.html" class="btn-back">← Powrót do bazy wiedzy</a>
     </div>
+
+    <!-- Podpięcie skryptu animacji -->
+    <script src="fluid.js"></script>
+
 </body>
 </html>

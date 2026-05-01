@@ -3,21 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instrukcje Serwisowe | J.K Serwis PC</title>
+    <title>Baza Wiedzy | J.K Serwis PC</title>
     <link rel="icon" type="image/x-icon" href="https://github.com/jk-5/jk-5.github.io/raw/refs/heads/main/favicon.ico">
     <style>
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(rgba(15, 15, 20, 0.95), rgba(15, 15, 20, 0.95)), url('background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            /* Zmiana: Idealna czerń pod OLED */
+            background: #000000;
             color: #e0e0e0;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Element płótna dla fluid.js */
+        #fluid-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
 
         .container {
@@ -25,17 +34,19 @@
             max-width: 900px;
             padding: 40px 20px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
             font-size: 2.5rem;
             color: #fff;
             margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+            text-shadow: 0 0 15px rgba(0, 120, 212, 0.3);
         }
 
         .subtitle {
-            color: #2ecc71;
+            color: #0078d4;
             font-weight: bold;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -51,30 +62,34 @@
         }
 
         .instruction-card {
-            background: rgba(30, 30, 35, 0.8);
+            /* Zmiana: Efekt szklanej karty */
+            background: rgba(30, 30, 35, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 25px;
             text-decoration: none;
             color: #e0e0e0;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(10px);
         }
 
         .instruction-card:hover {
             transform: translateY(-10px);
-            background: rgba(46, 204, 113, 0.1);
-            border-color: #2ecc71;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #0078d4;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
         .icon {
             font-size: 2.5rem;
             margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
         }
 
         .instruction-card h3 {
@@ -100,16 +115,20 @@
         }
 
         .btn-home:hover {
-            color: #2ecc71;
-            border-color: #2ecc71;
+            color: #0078d4;
+            border-color: #0078d4;
         }
 
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
+            .container { padding: 20px 10px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Animacja w tle -->
+    <canvas id="fluid-canvas"></canvas>
 
     <div class="container">
         <h1>Baza Wiedzy</h1>
@@ -121,7 +140,7 @@
             <a href="instrukcja-hosts.html" class="instruction-card">
                 <div class="icon">📝</div>
                 <h3>Plik HOSTS</h3>
-                <p>Jak bezpiecznie edytować plik hosts w Windows i zarządzać domanami.</p>
+                <p>Jak bezpiecznie edytować plik hosts w Windows i zarządzać domenami.</p>
             </a>
 
             <!-- PowerShell History -->
@@ -142,6 +161,9 @@
 
         <a href="index.html" class="btn-home">← Powrót do strony głównej</a>
     </div>
+
+    <!-- Skrypt tła -->
+    <script src="fluid.js"></script>
 
 </body>
 </html>

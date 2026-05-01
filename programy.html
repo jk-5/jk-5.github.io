@@ -8,10 +8,8 @@
     <style>
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(rgba(15, 15, 20, 0.9), rgba(15, 15, 20, 0.9)), url('background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            /* Zmiana: Idealna czerń pod OLED */
+            background: #000000;
             color: #e0e0e0;
             display: flex;
             justify-content: center;
@@ -19,19 +17,37 @@
             min-height: 100vh;
             margin: 0;
             padding: 40px 0;
+            overflow-x: hidden;
+        }
+
+        /* Styl dla płótna animacji */
+        #fluid-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
 
         .container {
-            background: rgba(30, 30, 35, 0.95);
+            /* Zmiana: Efekt szklanego kontenera */
+            background: rgba(30, 30, 35, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            
             padding: 2.5rem;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
             max-width: 600px;
             width: 90%;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            
+            position: relative;
+            z-index: 1;
+            pointer-events: none; /* Pozwala malować pod menu */
         }
 
-        /* Logo jak na stronie głównej */
         .logo {
             max-width: 280px;
             width: 100%;
@@ -54,6 +70,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            pointer-events: auto; /* Przywrócenie interakcji dla listy */
         }
 
         .item {
@@ -117,6 +134,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: 0.3s;
+            pointer-events: auto; /* Przywrócenie klikalności */
         }
 
         .btn-back:hover { color: #0078d4; }
@@ -124,14 +142,15 @@
 </head>
 <body>
 
+    <!-- Element tła -->
+    <canvas id="fluid-canvas"></canvas>
+
     <div class="container">
-        <!-- Logo spójne z index.html -->
         <img src="logo.png" alt="J.K Serwis PC Logo" class="logo">
         
         <h1>Programy Podstawowe</h1>
         
         <div class="download-list">
-            <!-- Adobe Acrobat Reader DC -->
             <div class="item">
                 <div class="item-text">
                     <span class="item-name">Adobe Acrobat Reader DC</span>
@@ -140,7 +159,6 @@
                 <a href="https://get.adobe.com/pl/reader/" target="_blank" class="btn-download">Pobierz</a>
             </div>
 
-            <!-- Google Chrome -->
             <div class="item">
                 <div class="item-text">
                     <span class="item-name">Google Chrome</span>
@@ -149,7 +167,6 @@
                 <a href="https://www.google.com/chrome/" target="_blank" class="btn-download">Pobierz</a>
             </div>
 
-            <!-- IrfanView -->
             <div class="item">
                 <div class="item-text">
                     <span class="item-name">IrfanView</span>
@@ -158,7 +175,6 @@
                 <a href="https://www.irfanview.com/64bit.htm" target="_blank" class="btn-download">Pobierz</a>
             </div>
 
-            <!-- K-Lite Codec Pack -->
             <div class="item">
                 <div class="item-text">
                     <span class="item-name">K-Lite Codec Pack Mega</span>
@@ -167,7 +183,6 @@
                 <a href="https://codecguide.com/download_k-lite_codec_pack_mega.htm" target="_blank" class="btn-download">Pobierz</a>
             </div>
 
-            <!-- Microsoft Office 2021 -->
             <div class="item">
                 <div class="item-text">
                     <span class="item-name">Microsoft Office 2021</span>
@@ -176,7 +191,6 @@
                 <a href="https://www.instalki.pl/download/programy/windows/biuro/pakiety-biurowe/microsoft-office-2/" target="_blank" class="btn-download">Pobierz</a>
             </div>
 
-            <!-- WinRAR -->
             <div class="item">
                 <div class="item-text">
                     <span class="item-name">WinRAR</span>
@@ -188,6 +202,9 @@
 
         <a href="index.html" class="btn-back">← Powrót do menu głównego</a>
     </div>
+
+    <!-- Podpięcie skryptu tła -->
+    <script src="fluid.js"></script>
 
 </body>
 </html>

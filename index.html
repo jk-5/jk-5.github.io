@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>J.K Serwis PC</title>
     
-    <!-- Link do favicony -->
     <link rel="icon" type="image/x-icon" href="https://github.com/jk-5/jk-5.github.io/raw/refs/heads/main/favicon.ico">
 
     <style>
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(rgba(15, 15, 20, 0.85), rgba(15, 15, 20, 0.85)), url('background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            /* Zmiana: Idealna czerń pod efekt OLED */
+            background: #000000; 
             color: #e0e0e0;
             display: flex;
             justify-content: center;
@@ -23,16 +20,36 @@
             margin: 0;
             text-align: center;
             padding: 40px 0;
+            overflow: hidden; /* Ukrywamy suwaki, by animacja była tłem */
+        }
+
+        /* Dodano: Styl dla płótna animacji */
+        #fluid-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
 
         .container {
-            background: rgba(30, 30, 35, 0.95);
+            /* Zmiana: Mniejsza przezroczystość i Blur (szkło) */
+            background: rgba(30, 30, 35, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            
             padding: 3rem 2.5rem;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
             max-width: 500px;
             width: 90%;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            
+            /* Zmiana: Warstwy i obsługa myszy */
+            position: relative;
+            z-index: 1;
+            pointer-events: none; 
         }
 
         .logo {
@@ -55,6 +72,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            pointer-events: auto; /* Przywrócenie klikalności dla przycisków */
         }
 
         .tile {
@@ -83,6 +101,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 20px;
             line-height: 1.6;
+            pointer-events: auto; /* Przywrócenie klikalności dla linków */
         }
 
         .footer a {
@@ -98,8 +117,10 @@
 </head>
 <body>
 
+    <!-- Dodano: Element, na którym fluid.js będzie rysował -->
+    <canvas id="fluid-canvas"></canvas>
+
     <div class="container">
-        <!-- Maksymalnie wyeksponowane logo -->
         <img src="logo.png" alt="J.K Serwis PC Logo" class="logo">
         
         <p>Wybierz kategorię:</p>
@@ -117,6 +138,9 @@
             Projekt: <a href="https://github.com/jk-5/PS1Install" target="_blank">PowerShell Multi Installer</a>
         </div>
     </div>
+
+    <!-- Dodano: Podpięcie zewnętrznego pliku ze skryptem -->
+    <script src="fluid.js"></script>
 
 </body>
 </html>

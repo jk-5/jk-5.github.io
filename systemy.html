@@ -8,10 +8,8 @@
     <style>
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(rgba(15, 15, 20, 0.9), rgba(15, 15, 20, 0.9)), url('background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            /* Zmiana: Idealna czerń pod ekrany OLED */
+            background: #000000;
             color: #e0e0e0;
             display: flex;
             justify-content: center;
@@ -19,17 +17,36 @@
             min-height: 100vh;
             margin: 0;
             padding: 40px 0;
+            overflow: hidden;
+        }
+
+        /* Kontener dla animacji fluid.js */
+        #fluid-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
 
         .container {
-            background: rgba(30, 30, 35, 0.95);
+            /* Zmiana: Efekt szklanego kontenera */
+            background: rgba(30, 30, 35, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            
             padding: 2.5rem;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
             max-width: 600px;
             width: 90%;
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
+            
+            position: relative;
+            z-index: 1;
+            pointer-events: none; /* Pozwala "malować" pod spodem */
         }
 
         .logo {
@@ -53,6 +70,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            pointer-events: auto; /* Przywrócenie interakcji dla przycisków */
         }
 
         .system-item {
@@ -69,7 +87,7 @@
         .system-item:hover {
             background: rgba(255, 255, 255, 0.08);
             transform: translateY(-2px);
-            border-color: #0078d4;
+            border-color: rgba(0, 120, 212, 0.5);
         }
 
         .system-info {
@@ -116,12 +134,16 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: 0.3s;
+            pointer-events: auto;
         }
 
         .btn-back:hover { color: #0078d4; }
     </style>
 </head>
 <body>
+
+    <!-- Element płótna dla animacji fluid -->
+    <canvas id="fluid-canvas"></canvas>
 
     <div class="container">
         <img src="logo.png" alt="J.K Serwis PC Logo" class="logo">
@@ -159,6 +181,9 @@
 
         <a href="index.html" class="btn-back">← Powrót do menu głównego</a>
     </div>
+
+    <!-- Podpięcie skryptu animacji -->
+    <script src="fluid.js"></script>
 
 </body>
 </html>

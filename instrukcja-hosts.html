@@ -4,35 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edycja pliku HOSTS | J.K Serwis PC</title>
-    <link rel="stylesheet" href="style.css"> <!-- Zakładam, że masz wspólny styl, jeśli nie - użyj stylów z poprzednich stron -->
+    <link rel="icon" type="image/x-icon" href="https://github.com/jk-5/jk-5.github.io/raw/refs/heads/main/favicon.ico">
     <style>
-        body { font-family: sans-serif; background: #0f0f14; color: #e0e0e0; padding: 40px; display: flex; justify-content: center; }
-        .card { background: #1e1e23; padding: 30px; border-radius: 15px; max-width: 600px; border: 1px solid #333; }
-        .path-box { background: #000; padding: 15px; border-radius: 8px; font-family: monospace; color: #00d4ff; border: 1px dashed #444; margin: 15px 0; word-break: break-all; }
-        h1 { color: #2ecc71; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .step { margin-bottom: 15px; line-height: 1.6; }
-        .btn-back { color: #888; text-decoration: none; display: inline-block; margin-top: 20px; }
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: #000000; /* Idealna czerń OLED */
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Element tła animowanego */
+        #fluid-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .card {
+            /* Efekt szklanej karty (Glassmorphism) */
+            background: rgba(30, 30, 35, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            pointer-events: none; /* Pozwala malować pod menu */
+        }
+
+        h1 { 
+            color: #ffffff; 
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        .step { 
+            margin-bottom: 15px; 
+            line-height: 1.6; 
+            text-align: left;
+            pointer-events: auto;
+        }
+
+        .path-box { 
+            background: rgba(0, 0, 0, 0.5); 
+            padding: 15px; 
+            border-radius: 10px; 
+            font-family: 'Consolas', monospace; 
+            color: #00d4ff; 
+            border: 1px dashed rgba(0, 212, 255, 0.3); 
+            margin: 15px 0; 
+            word-break: break-all;
+            pointer-events: auto;
+            user-select: all; /* Łatwe kopiowanie ścieżki */
+        }
+
+        ol {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        ol li {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        strong {
+            color: #fff;
+        }
+
+        .btn-back { 
+            display: inline-block;
+            margin-top: 25px;
+            color: #888; 
+            text-decoration: none; 
+            font-size: 0.9rem;
+            transition: 0.3s;
+            pointer-events: auto;
+        }
+
+        .btn-back:hover { 
+            color: #0078d4; 
+        }
+
+        /* Akcent dla ważnych informacji */
+        .highlight {
+            color: #0078d4;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Animacja tła -->
+    <canvas id="fluid-canvas"></canvas>
+
     <div class="card">
         <h1>Edycja pliku HOSTS</h1>
-        <p class="step">Plik <strong>hosts</strong> pozwala na ręczne przypisanie adresów IP do domen (np. blokowanie stron).</p>
+        <p class="step">Plik <strong>hosts</strong> służy do ręcznego mapowania nazw domen na adresy IP. Jest często używany do blokowania niechcianych witryn lub przekierowań lokalnych.</p>
         
         <span class="step"><strong>Lokalizacja pliku:</strong></span>
         <div class="path-box">C:\Windows\System32\drivers\etc\hosts</div>
 
         <div class="step">
-            <strong>Instrukcja:</strong>
+            <strong>Instrukcja postępowania:</strong>
             <ol>
-                <li>Wyszukaj <strong>Notatnik</strong> w menu Start.</li>
-                <li>Kliknij go prawym przyciskiem i wybierz <strong>"Uruchom jako administrator"</strong> (kluczowe!).</li>
-                <li>W Notatniku wybierz Plik -> Otwórz.</li>
-                <li>Wklej powyższą ścieżkę w okno wyboru pliku.</li>
-                <li>Jeśli nie widzisz pliku, zmień "Dokumenty tekstowe (*.txt)" na <strong>"Wszystkie pliki (*.*)"</strong>.</li>
+                <li>Wyszukaj aplikację <span class="highlight">Notatnik</span> w menu Start.</li>
+                <li>Kliknij na nią prawym przyciskiem myszy i wybierz <span class="highlight">Uruchom jako administrator</span>.</li>
+                <li>W otwartym Notatniku przejdź do: <strong>Plik -> Otwórz</strong>.</li>
+                <li>Wklej powyższą ścieżkę w pasku adresu okna wyboru pliku.</li>
+                <li>Jeśli lista jest pusta, zmień format z ".txt" na <span class="highlight">Wszystkie pliki (*.*)</span> w prawym dolnym rogu okna.</li>
+                <li>Po dokonaniu zmian zapisz plik (Ctrl + S).</li>
             </ol>
         </div>
-        <a href="instrukcje.html" class="btn-back">← Powrót</a>
+
+        <a href="instrukcje.html" class="btn-back">← Powrót do bazy wiedzy</a>
     </div>
+
+    <!-- Podpięcie skryptu animacji -->
+    <script src="fluid.js"></script>
+
 </body>
 </html>
